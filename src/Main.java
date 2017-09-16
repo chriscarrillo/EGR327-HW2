@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Main {
     public static void main(String[] args) {
         // Creates an ArrayList of Vehicle
@@ -19,13 +17,15 @@ public class Main {
         vehicles.add(chevy);
 
         // Print out each vehicle from vehicles
-        for (int i = 0; i < vehicles.size(); i++) {
+        for (int i = 0; i < vehicles.getSize(); i++) {
             vehicles.get(i).printVehicle();
             System.out.println();
         }
 
         /*vehicles.findCheapestVehicle().printVehicle();
+        System.out.println();
         vehicles.findMostExpensiveVehicle().printVehicle();
+        System.out.println();
         vehicles.printAveragePriceOfAllVehicles();*/
     }
 }

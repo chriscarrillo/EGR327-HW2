@@ -5,8 +5,28 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class InventoryTests {
+    // Inventory used for testing
     private Inventory inv = new Inventory();
+
+    // Streams used for testing
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream errors = new ByteArrayOutputStream();
+
+    /**
+     * Helper method that sets up the streams for testing
+     */
+    private void setStreams() {
+        System.setOut(new PrintStream(output));
+        System.setErr(new PrintStream(errors));
+    }
+
+    /**
+     * Helper method that resets the streams
+     */
+    private void resetStreams() {
+        System.setOut(null);
+        System.setErr(null);
+    }
 
     private void buildInventory() {
         // Given
@@ -38,7 +58,7 @@ public class InventoryTests {
         inv.add(v);
 
         // Then
-        Assert.assertEquals("The vehicle was not successfully added.", 1, inv.size());
+        Assert.assertEquals("The vehicle was not successfully added.", 1, inv.getSize());
     }
 
     @Test
@@ -51,7 +71,7 @@ public class InventoryTests {
         inv.remove(v);
 
         // Then
-        Assert.assertEquals("The vehicle was not removed.", 0, inv.size());
+        Assert.assertEquals("The vehicle was not removed.", 0, inv.getSize());
     }
 
     @Test
@@ -74,8 +94,10 @@ public class InventoryTests {
 
     @Test
     public void printAveragePriceOfAllVehiclesTest() {
+        // Set Streams
+        setStreams();
+
         // Given
-        System.setOut(new PrintStream(output));
         buildInventory();
 
         // When
@@ -83,5 +105,8 @@ public class InventoryTests {
 
         // Then
         Assert.assertEquals("28600\n", output.toString());
+
+        // Reset Streams
+        resetStreams();
     }
 }

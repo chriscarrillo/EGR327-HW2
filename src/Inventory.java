@@ -2,25 +2,21 @@ import java.util.ArrayList;
 
 public class Inventory extends ArrayList {
     private ArrayList<Vehicle> inventory;
-    private int size;
 
     public Inventory() {
         inventory = new ArrayList<>();
-        size = 0;
     }
 
     public void add(Vehicle v) {
         inventory.add(v);
-        size += 1;
     }
 
     public void remove(Vehicle v) {
         inventory.remove(v);
-        size -= 1;
     }
 
-    public int size() {
-        return size;
+    public int getSize() {
+        return inventory.size();
     }
 
     public Vehicle get(int index) {
